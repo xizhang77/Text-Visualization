@@ -1,8 +1,15 @@
 # Text-Visualization
 
-How to run this code
+1. The structure of this project
+The files in /flask and /lib folders are Flask framework and extensions that will be used for the application. All the executable files are in the /app folder.
 
-First, cd to the app folder, which is the basic folder for our application.
+Data processing is done in app/cluster.py
+app/app.py is used to start the server and send data to javascript.
+D3 code could be found in app/templates/
+
+2. How to run this code
+
+First, go to the app folder, which is the basic folder for our application.
 
 To start the application, just run this script app.py as an argument to the Python interpreter from the virtual environment:
 
