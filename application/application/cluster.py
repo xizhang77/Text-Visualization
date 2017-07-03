@@ -30,9 +30,10 @@ from sklearn.neighbors.kde import KernelDensity
 from operator import itemgetter
 from collections import Counter
 
-
-os.chdir("data")
-
+# print "Enter cluster.py"
+STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+os.chdir(STATIC_DIR)
+# print "This is the STATIC_DIR in cluster " + STATIC_DIR
 ###############################################################################
 # Importing data and tokenizing the words (a-zA-Z) from each file
 def import_data():
