@@ -151,15 +151,21 @@ def getting_keywords( S, V, Vocabulary, df_doc, num_clusters, num_keywords):
 		# Get the most common keywords in each cluster (100 documents/cluster)
 		top_index= [word for word, word_count in Counter(sub_rank).most_common(num_keywords)]
 		most_common_words = itemgetter(*top_index)(Vocabulary)
+		print most_common_words
 		keyword_list.append( most_common_words )
 
 	flat_list = [item for sublist in keyword_list for item in sublist]
+	print flat_list
 
+	keyword_rank = pd.DataFrame(columns = ['keyword', 'rank'])
+	keyword_rank['keyword'] = flat_list
+	keyword_rank['rank'] = [20, 10, 10, 10, 5, 5, 5, 5, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2]*3
 	keyword_show = pd.DataFrame(columns= ['x', 'y', 'keyword']) 
 	keyword_show = df_kw.loc[df_kw['keyword'].isin(flat_list)]
-	keyword_show = keyword_show.reset_index(drop = True)
 
-	return keyword_show
+	result = pd.merge(keyword_show, keyword_rank, on='keyword')
+
+	return result
 
 
 def main1():

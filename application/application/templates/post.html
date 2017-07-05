@@ -30,6 +30,7 @@
   <script>
     doc_data = {{doc_data | safe}};
     kw_data = {{kw_data | safe}};
+    console.log(kw_data);
 
     var margin = { top: 30, right: 100, bottom: 50, left: 80 },
         outerWidth = 1300,
@@ -85,7 +86,7 @@
     var zoom = d3.behavior.zoom()
         .x(x)
         .y(y)
-        .scaleExtent([0, 20])
+        .scaleExtent([0.5, 5])
         .on("zoom", zoomed);
 
     var svg = d3.select("#scatter")
@@ -142,11 +143,10 @@
         .enter()
         .append("text")
         .classed("title", true)
-        .text(function(d) { 
-          return d["keyword"]; })
-        .attr("transform", transform)
+        .text(function(d) {
+          return d["keyword"];})
         .attr("font-family", "sans-serif")
-        .attr("font-size", "16px")
+        .attr("font-size", "20px")
         .attr("fill", "black");
 
     /* Invoke the tip in the context of the visualization */
@@ -188,10 +188,15 @@
       svg.select(".x.axis").call(xAxis);
       svg.select(".y.axis").call(yAxis);
       svg.selectAll(".dot")
-         .attr("transform", function(d) { 
-            return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")scale(" + d3.event.scale +")"; });
-      svg.selectAll("text.title")
          .attr("transform", transform);
+      svg.selectAll("text.title")
+         .attr("transform", transform)
+         .attr("opacity", function(d){
+             if (zoom.scale()*d.rank/20 >= 0.5)
+                return 1;
+             else
+                return 0;
+         });
     }
 
     function transform(d) {
