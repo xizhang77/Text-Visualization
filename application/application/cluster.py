@@ -146,7 +146,7 @@ def getting_keywords( S, V, Vocabulary, df_doc, num_clusters, num_keywords):
 		for j in range(len(subdata)):
 			doc_index =np.array([ subdata.ix[j]['x'] , subdata.ix[j]['y'] ])
 			weight = np.array(np.dot(np.dot(doc_index, S), V))
-			rank = weight.argsort()[-100:][::-1]
+			rank = weight.argsort()[-50:][::-1]
 			sub_rank.extend(rank)
 		# Get the most common keywords in each cluster (100 documents/cluster)
 		top_index= [word for word, word_count in Counter(sub_rank).most_common(num_keywords)]
@@ -181,6 +181,8 @@ def main1():
 
 	num_keywords = 20
 	df_kw = getting_keywords( S, V, Vocabulary, df_doc, num_clusters, num_keywords)
+
+	print df_kw
 
 	return df_doc, df_kw
 
