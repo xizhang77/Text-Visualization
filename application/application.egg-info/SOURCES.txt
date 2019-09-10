@@ -1,4 +1,5 @@
 setup.py
+application/Funcs.py
 application/__init__.py
 application/cluster.py
 application/views.py
