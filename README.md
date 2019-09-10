@@ -15,6 +15,8 @@ Here is the whole structure
         /templates
             post.html
             ...
+        /statics
+            some css & js files
     /flask
     /lib
 ```
