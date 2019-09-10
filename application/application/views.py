@@ -16,8 +16,7 @@ def my_form_post():
 	STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
 	# print "This is STATIC_DIR in views" + STATIC_DIR
 
-	df_doc, df_kw = cluster.main1()
-
+	df_doc, df_kw = cluster.main()
 	doc_data = df_doc.to_json(orient='records')
 	kw_data = df_kw.to_json(orient='records')
 
